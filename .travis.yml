@@ -14,7 +14,6 @@ cache:
     - node_modules
 install:
   - npm install
-  - npm i -g react-deploy-cli
   - npm run build
 before_script:
   - export RELEASE_HEAD=$(git rev-parse --short HEAD | cut -c1-7)
