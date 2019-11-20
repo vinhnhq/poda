@@ -1,33 +1,29 @@
----
 language: node_js
 node_js:
-  # LTS version
-  - "10.16.3"
+- 10.16.3
 notifications:
   email:
-    on_success: change # only if status change from fail to success
-    on_failure: always # if there is a fail
+    on_success: change
+    on_failure: always
     recipients:
-      - nhquocvinh@gmail.com
+    - nhquocvinh@gmail.com
 cache:
   directories:
-    - node_modules
+  - node_modules
 install:
-  - npm install
-  - npm run build
+- npm install
+- npm run build
 before_script:
-  - export RELEASE_HEAD=$(git rev-parse --short HEAD | cut -c1-7)
-  - export RELEASE_HEAD_LONG=$(git rev-parse HEAD)
-  - export CI=false
+- export RELEASE_HEAD=$(git rev-parse --short HEAD | cut -c1-7)
+- export RELEASE_HEAD_LONG=$(git rev-parse HEAD)
+- export CI=false
 deploy:
   provider: s3
   access_key_id: AKIA2JHQ45NBHMZORRV5
   secret_access_key:
-    secure: BJcA0ir2vQekshJ86qQN6ZEt09AlY0tgJo2XjPmqOB8qCEwoNg5YhXBrBSWVvmTbmi9c6pbjmMsfbzPzzKckaumer9asfBPwPQ2gowivRLBKqWmpQ9nLRYaCsTzjQjMhX8qWzRt7gQeQ18rbP5YvmkaHiS6ODE09eFTCVOXYDeo5zgqU7TLgYMc1a5odGmOnKkCGxyKt53XLDe9g+vOla6s8X6MDoLJ1k427wxH+7fJpCiCgnEUSn+jaAPNr4VLqVLjT2COqcMxJkwE+KnfW5GWY9m0nifQPNXvzwhyK7zz1RYM6siQ6jU+Lvmh63x8Z1erQGSwQs8vI5uzrh9xse1TCM2UrJtoeQ09UXt21eJIr5YAv9SJ8lM5CUrRx5GmyDW6avbuK3guav3NfAv0eCb18qki+psdZeYrtb6U3bg9Av25Ox4Ps0UpaN3TE+dlmSHKDygrVBDlHRnYXsSVm2j5bddFwlaS/r2OF4YXHQEHcC2KyEpGeHCBmd58tkNNWXfcdJcQzqy2MalBTu0xbPdKFwvE8WqZmWPym8XuYeIDtarcQ4Wih7rfAMBg7pOF3tRKTJSvdJGF0yJdnyS8qrNsIucerfBp9vszbp4JGxGN22xxJbIOwZhDa08UgIMtEwbYjRauVdGDIMVThhjHXVvJb7qwFYvD7uMuU0bOgc9Y=
+    secure: vIw5OYQ0wwX3fO7XhOCzmQM5Vvn7gbuYdTTS5EUl1lB7XtKXkhWcYW9UFCW9I2PZvLLn2gBljwVkGQQDSV+KsnRAzyxgKp4i3ICuxbbDx1C8ySDPgHE5JwAaSai/eE07oHuaIGzkLkDInoyLXNE+JPMCm0lnE9iB0WXpRJqK8nGTmP/AWtpX1I36u34620MaDscBjH/SlN2I9qmv89uipfUeHflmx0Co6srAukUPhfp5UK1Q8kosTzGN7KPf+RI9hcdgQG3eUMyNK720k0l6SWPfETKrmAuItaG3SkV7sQ17cI2sxcOD2jvHj15gxHXyNCf1eTGOtJDzd2tbfl/VofwbcjLAQl+9xwYNYSiV7MMVsZKr2fjI2ubogmKhC3CrlH0Y9Cli6ghOjA27uZsdv7SgVFZrbcMr1C10/xUDve3ObYyXkVFp+kb3zMRgMf0MfBWcLNgCmJuWT2FUc52Ry+e6HWjC3MI/zq/1MuZDg49k0WPT396ClCItVdbiR+amqDu21cdhBOlXLRm0DHY++Dtka5W2Ftc7oabrucpO5baP21B0bzWlBf5k3xQ4+i2jXAHbBO7VuLwkmkAi9xmf/TahCayqCIJkBDlnR2sgrE6KsS1ElP+Wvo0F58bVs1mUeb8TbO0lH9D3mESWP/pRyT6OdqbvUBVEEGRW88ly/3I=
   bucket: vinhnhq-prod
+  local-dir: build
   acl: public_read
-  skip_cleanup: true
-  local_dir: build
-  branches:
-  only:
-    - master
+  on:
+    repo: vinhnguyenhq/poda
